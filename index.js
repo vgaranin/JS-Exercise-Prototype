@@ -8,15 +8,18 @@
 */
 
 // EXAMPLE SOLUTION CODE:
-function Airplane(name) {
-  this.name = name;
-  this.isFlying = false;
+function Airplane(name)
+{
+    this.name = name;
+    this.isFlying = false;
 }
-Airplane.prototype.takeOff = function () {
-  this.isFlying = true;
+Airplane.prototype.takeOff = function ()
+{
+    this.isFlying = true;
 };
-Airplane.prototype.land = function () {
-  this.isFlying = false;
+Airplane.prototype.land = function ()
+{
+    this.isFlying = false;
 };
 
 
@@ -39,15 +42,46 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-  
+function Person(name, age)
+{
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
 }
 
+Person.prototype.eat = function (edible)
+{
+    if (this.stomach.length < 10)
+    {
+        this.stomach.push(edible);
+    }
+};
+
+Person.prototype.poop = function ()
+{
+    this.stomach = [];
+};
+
+Person.prototype.toString = function ()
+{
+    return `${this.name}, ${this.age}`;
+};
 
 
+const kevin = new Person("Kevin", 26);
+// const leo = new Person("Leo", 18);
 
+kevin.eat('pizza');
+kevin.eat("pasta");
+kevin.eat('soup');
+kevin.eat("sushi");
 
+console.log(kevin.stomach);
 
+kevin.poop();
+
+console.log(kevin.stomach);
+console.log(kevin.toString());
 
 /*
   TASK 2
@@ -63,11 +97,23 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-  
+function Car()  //model, milesPerGallon
+{
+
+    //     this.model = car.model;
+    //     this.milesPerGallon = car.milesPerGallon;
+    //     this.tank = [0];
+    //     this.odometer = [0];
 }
 
+// tank.prototype.fill = function (gallons)
+// {
 
+// };
+
+
+// const infinity = new Car(infinity, "25 miles per 1 gallon");
+// const lexus = new Car("Lexus", "30 miles per 1gallon"
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
@@ -75,8 +121,9 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
- 
+function Baby()
+{
+
 }
 
 
@@ -93,14 +140,15 @@ function Baby() {
 ///////// END OF CHALLENGE /////////
 
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
-function foo(){
-  console.log('its working!');
-  return 'bar';
+function foo()
+{
+    console.log('its working!');
+    return 'bar';
 }
 foo();
 module.exports = {
-  foo,
-  Person, 
-  Car,
-  Baby
-}
+    foo,
+    Person,
+    Car,
+    Baby
+};
