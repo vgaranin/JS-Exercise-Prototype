@@ -97,23 +97,53 @@ console.log(kevin.toString());
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car()  //model, milesPerGallon
+function Car(model, milesPerGallon)
 {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0; //20 gallons
+    this.odometer = 0; //tank empty when odometer: lexus 600miles 
 
-    //     this.model = car.model;
-    //     this.milesPerGallon = car.milesPerGallon;
-    //     this.tank = [0];
-    //     this.odometer = [0];
 }
 
-// tank.prototype.fill = function (gallons)
-// {
+Car.prototype.fill = function (gallons)
+{
+    this.tank = gallons;
+};
 
-// };
+Car.prototype.drive = function (miles)
+{
+    this.odometer += miles;
+
+    const usedGallons = miles / this.milesPerGallon;
+    this.tank -= usedGallons;
+
+    if (this.tank > 0)
+    {
+        return `Keep driving, passed ${this.odometer} miles!`;
+    }
+    else
+    {
+        return `I ran out of fuel at ${this.odometer} miles!`;
+    }
+};
+
+const lexus = new Car("Lexus", 30);
+lexus.fill(20);
+
+let continueDriving = true;
+while (continueDriving)
+{
+    const message = lexus.drive(1);
+    console.log(message);
+
+    if (message.startsWith("I ran out of fuel"))
+    {
+        continueDriving = false;
+    }
+}
 
 
-// const infinity = new Car(infinity, "25 miles per 1 gallon");
-// const lexus = new Car("Lexus", "30 miles per 1gallon"
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
